@@ -13,8 +13,9 @@ class Slide3 extends StatefulWidget {
 class _Slide3State extends State<Slide3> {
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Container(
-      padding: const EdgeInsets.only(left: 27),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -24,7 +25,7 @@ class _Slide3State extends State<Slide3> {
           ),
           const Padding(padding: EdgeInsets.only(bottom: 12)),
           SizedBox(
-            height: 167,
+            height: height * 0.19,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: const [
@@ -63,22 +64,26 @@ class DetailSlide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Container(
-      width: 140,
-      padding: const EdgeInsets.only(right: 16),
+      width: width * 0.35,
+      padding: const EdgeInsets.only(right: 10),
       child: Column(
         children: [
           Image(
-              image: AssetImage(
-                image,
-              ),
-              height: 93,
-              width: 140,
-              fit: BoxFit.fill),
-          const Padding(padding: EdgeInsets.only(top: 12)),
+            image: AssetImage(
+              image,
+            ),
+            height: height * 0.12,
+            width: width,
+            fit: BoxFit.fill,
+          ),
+          const Padding(padding: EdgeInsets.only(top: 1)),
           Text(
             text,
             maxLines: 3,
+            overflow: TextOverflow.ellipsis,
             style: CustomStyle262(),
           ),
         ],

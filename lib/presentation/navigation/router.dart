@@ -35,7 +35,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/dashboard',
   routes: [
     GoRoute(
       path: '/',
@@ -44,8 +44,8 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/dashboard',
-      name: Routes.dasboard,
-      builder: (context, state) => const dasboard(),
+      name: Routes.dashboardScreen,
+      builder: (context, state) => const DashboardScreen(),
     ),
     GoRoute(
         path: "/akun",
@@ -170,9 +170,8 @@ final GoRouter router = GoRouter(
       path: '/udd',
       name: Routes.uddPage,
       builder: (context, state) {
-        BlocProvider.of<UnitUddCubit>(context)
-            .fetchUnitUdd(accesToken: "accesToken");
-        return const UddPage();
+        BlocProvider.of<UnitUddCubit>(context).fetchUnitUdd();
+        return UddPage();
       },
     ),
     GoRoute(
@@ -184,9 +183,7 @@ final GoRouter router = GoRouter(
           accesToken: "accesToken",
           unitId: unitId,
         );
-        BlocProvider.of<UnitUddCubit>(context).fetchUnitUdd(
-          accesToken: "accesToken",
-        );
+        BlocProvider.of<UnitUddCubit>(context).fetchUnitUdd();
         return JadwalDonorPage(
           unitId: unitId,
         );

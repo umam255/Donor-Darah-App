@@ -134,7 +134,7 @@ TextStyle CustomStyle261({
     );
 
 TextStyle CustomStyle262({
-  double myfontsize = 10,
+  double myfontsize = 11,
   dynamic myfontweight = FontWeight.w500,
   dynamic myfontfamily = "Plus Jakarta Sans",
   dynamic myColor = black26Color,
@@ -147,7 +147,7 @@ TextStyle CustomStyle262({
     );
 
 TextStyle CustomStyle263({
-  double myfontsize = 10,
+  double myfontsize = 12,
   dynamic myfontweight = FontWeight.w600,
   dynamic myfontfamily = "Plus Jakarta Sans",
   dynamic myColor = black26Color,

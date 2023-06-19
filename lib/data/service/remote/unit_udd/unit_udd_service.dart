@@ -6,7 +6,7 @@ class UnitUddService {
   Client client = Client();
 
   Future<Response> fetchUnitUdd(AuthenticationHeadersRequest header) async {
-    final url = Uri.https(
+    final url = Uri.http(
       BaseConfig.BASE_DOMAIN,
       BaseConfig.BASE_PATH + BaseConfig.UNIT,
     );

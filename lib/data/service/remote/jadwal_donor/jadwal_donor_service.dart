@@ -9,7 +9,7 @@ class JadwalDonorService {
     AuthenticationHeadersRequest header,
     int unitId,
   ) async {
-    final url = Uri.https(
+    final url = Uri.http(
       BaseConfig.BASE_DOMAIN,
       BaseConfig.BASE_PATH + BaseConfig.SCHEDULE_LIST + "/$unitId",
     );

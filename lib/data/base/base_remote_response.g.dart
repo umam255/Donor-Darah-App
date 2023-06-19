@@ -11,10 +11,10 @@ BaseRemoteResponse<R> _$BaseRemoteResponseFromJson<R>(
   R Function(Object? json) fromJsonR,
 ) =>
     BaseRemoteResponse<R>(
-      status: json['status'] == null
+      status: json['Status'] == null
           ? null
-          : StatusResponse.fromJson(json['status'] as Map<String, dynamic>),
-      data: _$nullableGenericFromJson(json['data'], fromJsonR),
+          : StatusResponse.fromJson(json['Status'] as Map<String, dynamic>),
+      data: _$nullableGenericFromJson(json['Data'], fromJsonR),
     );
 
 Map<String, dynamic> _$BaseRemoteResponseToJson<R>(
@@ -22,8 +22,8 @@ Map<String, dynamic> _$BaseRemoteResponseToJson<R>(
   Object? Function(R value) toJsonR,
 ) =>
     <String, dynamic>{
-      'status': instance.status,
-      'data': _$nullableGenericToJson(instance.data, toJsonR),
+      'Status': instance.status,
+      'Data': _$nullableGenericToJson(instance.data, toJsonR),
     };
 
 T? _$nullableGenericFromJson<T>(

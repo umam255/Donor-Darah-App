@@ -21,23 +21,25 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Column(children: [
-      Container(
-        color: white249Color,
-        padding: const EdgeInsets.only(left: 24, top: 24),
+      padding: const EdgeInsets.only(left: 24, right: 24, top: 56),
+      child: Column(
+        children: const [
+          //get slide
+          Slide1(),
+          Padding(
+            padding: EdgeInsets.only(
+              top: 33,
+            ),
+          ),
+          Slide2(),
+          Padding(
+            padding: EdgeInsets.only(
+              top: 33,
+            ),
+          ),
+          Slide3()
+        ],
       ),
-      //get slide
-      const Slide1(),
-      const Padding(
-          padding: EdgeInsets.only(
-        top: 33,
-      )),
-      const Slide2(),
-      const Padding(
-          padding: EdgeInsets.only(
-        top: 45,
-      )),
-      const Slide3()
-    ])); //
+    ); //
   }
 }

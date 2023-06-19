@@ -9,7 +9,7 @@ class Routes {
   static const String pernyataanPage = 'pernyataan';
   static const String questionerPage = 'questioner';
   static var loginscreen2 = "login2";
-  static var dasboard = "dasboard";
+  static var dashboardScreen = "dasboard";
   static var detailinfoberita = "info&berita";
   static var detailinfoagenda = "lihatkartudonor";
   static var notifikasidetail = "jadwaldonordarah";

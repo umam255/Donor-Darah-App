@@ -6,7 +6,9 @@ part 'base_remote_response.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true, includeIfNull: true)
 class BaseRemoteResponse<R> {
+  @JsonKey(name: 'Status')
   StatusResponse? status;
+  @JsonKey(name: 'Data')
   R? data;
 
   BaseRemoteResponse({

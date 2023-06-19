@@ -194,7 +194,6 @@ class _ScreenAkunState extends State<ScreenAkun> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _profileCubit = ProfileCubit(
       ProfileRemoteRepositoryImpl(),
     );
@@ -480,12 +479,13 @@ class DetailCard extends StatelessWidget {
                       margin: EdgeInsets.only(left: 15),
                       child: Image(image: AssetImage(image))),
                   IconButton(
-                      onPressed: onTap,
-                      icon: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 18,
-                        color: greyColor,
-                      )),
+                    onPressed: onTap,
+                    icon: Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 18,
+                      color: greyColor,
+                    ),
+                  ),
                 ],
               ),
               Positioned(

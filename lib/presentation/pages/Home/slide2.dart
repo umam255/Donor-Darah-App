@@ -17,48 +17,52 @@ class _Slide2State extends State<Slide2> {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Container(
-        child: Column(children: [
-      SizedBox(
-          height: 94,
-          width: 312,
-          child: Card(
-            color: redColor,
-            elevation: 2,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            child: Container(
-              margin: const EdgeInsets.fromLTRB(16, 15, 16, 17),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    child: RichText(
-                      text: const TextSpan(
-                          text: "Sudahkah anda\nDonor Darah?",
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: white255Color,
-                              fontFamily: "plus jakarta sans",
-                              fontWeight: FontWeight.w600)),
-                      maxLines: 2,
-                    ),
+      height: height * 0.14,
+      width: width,
+      decoration: BoxDecoration(
+        color: redColor,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Container(
+              alignment: Alignment.centerLeft,
+              child: RichText(
+                text: TextSpan(
+                  text: "Sudahkah anda\nDonor Darah?",
+                  style: TextStyle(
+                    fontSize: width * 0.04,
+                    color: white255Color,
+                    fontFamily: "plus jakarta sans",
+                    fontWeight: FontWeight.w600,
                   ),
-                  ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.only(
-                              top: 11, left: 16, bottom: 11, right: 16),
-                          backgroundColor: white249Color),
-                      child: Text(
-                        'Ajukan Donor',
-                        style: CustomStyle2175(),
-                      ))
-                ],
+                ),
+                maxLines: 2,
               ),
             ),
-          )),
-    ]));
+            SizedBox(
+              height: height * 0.08,
+              width: width * 0.35,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: white249Color,
+                ),
+                child: Text(
+                  'Ajukan Donor',
+                  style: CustomStyle2175(),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

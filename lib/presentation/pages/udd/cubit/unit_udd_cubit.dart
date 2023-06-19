@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:donor_darah/base/result_entity/result_entity.dart';
+import 'package:donor_darah/data/utilities/commons.dart';
 import 'package:donor_darah/domain/base/authentication_headers_request.dart';
 import 'package:donor_darah/domain/model/data/unit_udd/unit_udd_data.dart';
 import 'package:donor_darah/domain/repository/unit_udd/unit_udd_repository.dart';
@@ -12,10 +13,12 @@ class UnitUddCubit extends Cubit<UnitUddState> {
 
   UnitUddCubit(this.repository) : super(UnitUddInitial());
 
-  Future<void> fetchUnitUdd({required String accesToken}) async {
+  Future<void> fetchUnitUdd() async {
     emit(UnitUddIsLoading());
-    final response = await repository
-        .fetchUnitUdd(AuthenticationHeadersRequest("accesToken"));
+    final token = await Commons().getUid();
+    final response = await repository.fetchUnitUdd(
+      AuthenticationHeadersRequest(token),
+    );
 
     if (response is ResultSuccess) {
       emit(UnitUddIsSuccess(data: (response as ResultSuccess).data));

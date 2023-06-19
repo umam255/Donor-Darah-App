@@ -17,14 +17,17 @@ class LoginRepositoryImpl implements LoginRepository {
 
       print("STATUS CODE: ${response.statusCode}");
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
+      if (response.statusCode == 200) {
         BaseRemoteResponse<LoginDataResponse> baseResponse =
             BaseRemoteResponse<LoginDataResponse>.fromJson(
           jsonDecode(response.body),
           (json) => LoginDataResponse.fromJson(json as Map<String, dynamic>),
         );
 
-        LoginDataResponse.fromJson(jsonDecode(response.body));
+        LoginDataResponse.fromJson(
+          jsonDecode(response.body),
+        );
+
         if (baseResponse.status == null) {
           return ResultError();
         } else if (baseResponse.status?.code != 0) {
@@ -32,16 +35,13 @@ class LoginRepositoryImpl implements LoginRepository {
         } else if (baseResponse.data == null) {
           return ResultError(message: baseResponse.status?.message);
         } else {
-          print("INI TOKEN : ${baseResponse.data!.token}");
           return ResultSuccess(baseResponse.data!.toLoginData());
         }
       } else {
-        return ResultError(message: "");
-        // return ResultError(message: response.body);
+        return ResultError(message: response.body);
       }
     } catch (e) {
-      return ResultError(message: "");
-      // return ResultError(message: e.toString());
+      return ResultError(message: '');
     }
   }
 }

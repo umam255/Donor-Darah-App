@@ -36,126 +36,127 @@ class _NotifikasidetailState extends State<Notifikasidetail> {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+
     return Scaffold(
-        backgroundColor: white249Color,
-        body: BlocConsumer<NotifikasiCubit, NotifikasiState>(
-            listener: (context, notifikasiState) {
+      appBar: AppBar(
+        backgroundColor: redColor,
+        elevation: 0,
+        toolbarHeight: height * 0.15,
+        titleSpacing: width * 0.1,
+        title: Text(
+          'Notifikasi',
+          style: TextStyle(
+            fontSize: width * 0.045,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: width * 0.1),
+            child: Image.asset(
+              'assets/images/DD16.png',
+              height: height * 0.1,
+              width: width * 0.2,
+            ),
+          ),
+        ],
+      ),
+      body: BlocConsumer<NotifikasiCubit, NotifikasiState>(
+        listener: (context, notifikasiState) {
           if (notifikasiState is NotifikasiIsFailed) {
             //show snackbar
             Commons().showSnackBarInfo2(context, notifikasiState.message!);
           } else if (notifikasiState is NotifikasiIsSucces) {}
-        }, builder: (context, notifikasiState) {
+        },
+        builder: (context, notifikasiState) {
           if (notifikasiState is NotifikasiIsLoading) {
           } else if (notifikasiState is NotifikasiIsSucces) {}
           {
-            return Column(
-              children: [
-                Container(
-                  height: 100,
-                  color: redColor,
-                  child: Padding(
-                      padding: const EdgeInsets.only(left: 27),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.only(top: 30),
-                                child: const Text(
-                                  "Notifikasi",
-                                  style: TextStyle(
-                                      letterSpacing: 1,
-                                      wordSpacing: 2,
-                                      fontSize: 16,
-                                      fontFamily: "Plus Jakarta Sans",
-                                      color: white255Color,
-                                      fontWeight: FontWeight.w700),
+            return Container(
+              padding: const EdgeInsets.only(left: 14, right: 14, top: 20),
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: (isOpen ? white249Color : pinkColor),
+                      boxShadow: [
+                        BoxShadow(
+                          color: (isOpen ? white249Color : pinkColor),
+                          blurRadius: 3,
+                          spreadRadius: 1,
+                          offset: const Offset(0, 0),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            context.go('/jadwaldonordarah');
+                          },
+                          child: Text(
+                            "Jadwal Donor Darah",
+                            style: TextStyle(
+                              fontSize: width * 0.03,
+                              color: redColor,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        RichText(
+                          text: const TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text:
+                                    "Anda memiliki jadwal donor darah selanjutnya pada ",
+                                style: TextStyle(
+                                  wordSpacing: 2,
+                                  fontSize: 12,
+                                  fontFamily: "Plus Jakarta Sans",
+                                  color: greyColor,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              Container(
-                                  padding:
-                                      const EdgeInsets.only(left: 176, top: 35),
-                                  child: const Image(
-                                    image: AssetImage(
-                                      "assets/images/DD16.png",
-                                    ),
-                                    height: 50,
-                                    width: 51,
-                                  ))
-                            ],
-                          )
-                        ],
-                      )),
-                ),
-                const SizedBox(
-                  height: 18,
-                ),
-                Container(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
-                    width: 332,
-                    height: 76,
-                    decoration: BoxDecoration(
-                        color: (isOpen ? white249Color : pinkColor),
-                        boxShadow: [
-                          BoxShadow(
-                            color: (isOpen ? white249Color : pinkColor),
-                            blurRadius: 3,
-                            spreadRadius: 1,
-                            offset: const Offset(0, 0),
-                          ),
-                        ],
-                        borderRadius: BorderRadius.circular(4)),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              context.go('/jadwaldonordarah');
-                            },
-                            child: Text(
-                              "Jadwal Donor Darah",
-                              style: CustomStyle2173(),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          RichText(
-                              text: const TextSpan(children: <TextSpan>[
-                            TextSpan(
-                              text:
-                                  "Anda memiliki jadwal donor darah selanjutnya pada ",
-                              style: TextStyle(
+                              TextSpan(
+                                text: "23 Januari 2023. ",
+                                style: TextStyle(
                                   wordSpacing: 2,
-                                  fontSize: 10,
-                                  fontFamily: "Plus Jakarta Sans",
-                                  color: greyColor,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            TextSpan(
-                              text: "23 Januari 2023. ",
-                              style: TextStyle(
-                                  wordSpacing: 2,
-                                  fontSize: 10,
+                                  fontSize: 12,
                                   fontFamily: "Plus Jakarta Sans",
                                   color: redColor,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            TextSpan(
-                              text:
-                                  "Mohon untuk segera mengajukan donor darah dan ber...",
-                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    "Mohon untuk segera mengajukan donor darah dan ber...",
+                                style: TextStyle(
                                   wordSpacing: 2,
-                                  fontSize: 10,
+                                  fontSize: 12,
                                   fontFamily: "Plus Jakarta Sans",
                                   color: greyColor,
-                                  fontWeight: FontWeight.w500),
-                            )
-                          ]))
-                        ])),
-              ],
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             );
           }
-        }));
+        },
+      ),
+    );
   }
 }

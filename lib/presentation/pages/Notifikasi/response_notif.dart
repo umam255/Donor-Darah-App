@@ -19,7 +19,6 @@ class _ResponseNotifState extends State<ResponseNotif> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _notifikasiDetailCubit = NotifikasiDetailCubit(
       NotifikasiRemoteRepositoryImpl(),
     );

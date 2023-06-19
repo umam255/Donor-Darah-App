@@ -21,7 +21,6 @@ class _DetailInfoAGendaState extends State<DetailInfoAGenda> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _agendaDetailCubit = AgendaDetailCubit(
       AgendaRemoteRepositoryImpl(),
     );

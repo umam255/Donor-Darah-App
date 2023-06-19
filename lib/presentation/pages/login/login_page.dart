@@ -1,3 +1,4 @@
+import 'package:donor_darah/custom_textStyle.dart';
 import 'package:donor_darah/data/repository/login/login_repository_impl.dart';
 import 'package:donor_darah/data/utilities/commons.dart';
 import 'package:donor_darah/domain/model/request/login/login_request.dart';
@@ -49,242 +50,248 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: BlocConsumer<LoginCubit, LoginState>(
-          listener: (context, loginState) {
-            if (loginState is LoginIsError) {
-              ((loginState.message == ""
-                  ? Commons().showSnackBarErrorr(
-                      context, "No Handone atau Password Salah")
-                  : Commons()
-                      .showSnackBarErrorr(context, loginState.message!)));
-              if (loginState.message == "") {
-                Commons().showSnackBarErrorr(
-                    context, "No Handone atau Password Salah");
-              }
-            } else if (loginState is LoginIsSuccess) {
-              context.goNamed(Routes.dasboard);
+      resizeToAvoidBottomInset: false,
+      body: BlocConsumer<LoginCubit, LoginState>(
+        listener: (context, loginState) {
+          if (loginState is LoginIsError) {
+            ((loginState.message == ""
+                ? Commons().showSnackBarErrorr(
+                    context, "No Handone atau Password Salah")
+                : Commons().showSnackBarErrorr(context, loginState.message!)));
+            if (loginState.message == "") {
+              Commons().showSnackBarErrorr(
+                  context, "No Handone atau Password Salah");
             }
-          },
-          builder: (context, loginState) {
-            return Container(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Image.asset(
-                      'assets/images/Logo.png',
-                    ),
+          } else if (loginState is LoginIsSuccess) {
+            context.goNamed(Routes.dashboardScreen);
+            // Commons().showSnackBarSuccess(context, "Login Berhasil");
+          }
+        },
+        builder: (context, loginState) {
+          return Container(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Image.asset(
+                    'assets/images/Logo.png',
                   ),
-                  const SizedBox(
-                    height: 63,
+                ),
+                SizedBox(
+                  height: height * 0.08,
+                ),
+                Text(
+                  'Selamat Datang',
+                  style: TextStyle(
+                    fontSize: width * 0.05,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.02,
                   ),
-                  const Text(
-                    'Selamat Datang',
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 0.02,
-                    ),
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  'Silahkan login untuk masuk ke akun anda',
+                  style: TextStyle(
+                    fontSize: width * 0.028,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 0.02,
                   ),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  const Text(
-                    'Silahkan login untuk masuk ke akun anda',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 0.02,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 32,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Nomor Handphone',
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFFD91E2A)),
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Nomor Handphone',
+                      style: TextStyle(
+                        fontSize: width * 0.025,
+                        fontWeight: FontWeight.bold,
+                        color: redColor,
                       ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      TextFormField(
-                        controller: phoneController,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(
-                              color: Color(0xffFCE9EA),
-                            ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    TextFormField(
+                      controller: phoneController,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(
+                            color: Color(0xffFCE9EA),
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(
-                              color: Color(0xFFD91E2A),
-                            ),
-                          ),
-                          hintText: 'Masukan No Handphone',
-                          suffixIcon: const Icon(
-                            Icons.phone_iphone_rounded,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(
                             color: Color(0xFFD91E2A),
                           ),
-                          filled: true,
-                          fillColor: const Color(0xffFCE9EA),
                         ),
+                        hintText: 'Masukan No Handphone',
+                        suffixIcon: const Icon(
+                          Icons.phone_iphone_rounded,
+                          color: Color(0xFFD91E2A),
+                        ),
+                        filled: true,
+                        fillColor: const Color(0xffFCE9EA),
                       ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Kata Sandi',
-                        style: TextStyle(
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Kata Sandi',
+                      style: TextStyle(
+                        fontSize: width * 0.025,
+                        fontWeight: FontWeight.bold,
+                        color: redColor,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    TextFormField(
+                      controller: passwordController,
+                      obscureText: hidePassword,
+                      keyboardType: TextInputType.visiblePassword,
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(
+                            color: Color(0xffFCE9EA),
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(
+                            color: Color(0xFFD91E2A),
+                          ),
+                        ),
+                        hintText: 'Masukan Kata Sandi',
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            changePasswordVisibility();
+                          },
+                          child: Icon(
+                            color: const Color(0xFFD91E2A),
+                            (hidePassword)
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: const Color(0xffFCE9EA),
+                      ),
+                    ),
+                    SizedBox(height: height * 0.01),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () =>
+                            context.goNamed(Routes.lupaPasswordPage),
+                        child: const Text(
+                          'Lupa Kata Sandi',
+                          style: TextStyle(
+                            color: Color(0xFFD91E2A),
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
-                            color: Color(0xFFD91E2A)),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      TextField(
-                        controller: passwordController,
-                        obscureText: hidePassword,
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(
-                              color: Color(0xffFCE9EA),
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(
-                              color: Color(0xFFD91E2A),
-                            ),
-                          ),
-                          hintText: 'Masukan Kata Sandi',
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              changePasswordVisibility();
-                            },
-                            child: Icon(
-                              color: const Color(0xFFD91E2A),
-                              (hidePassword)
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                            ),
-                          ),
-                          filled: true,
-                          fillColor: const Color(0xffFCE9EA),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          onPressed: () =>
-                              context.goNamed(Routes.lupaPasswordPage),
-                          child: const Text(
-                            'Lupa Kata Sandi',
-                            style: TextStyle(
-                              color: Color(0xFFD91E2A),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                            ),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 68),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        height: 52,
-                        child: ElevatedButton(
-                          onPressed: validation()
-                              ? () {
-                                  BlocProvider.of<LoginCubit>(context)
-                                      .btnlogin(LoginRequest(
-                                    phoneController.text,
-                                    passwordController.text,
-                                  ));
-                                }
-                              : () {
-                                  Commons().showSnackBarErrorr(
-                                    context,
-                                    'No Handphone & Password Tidak Boleh Kosong',
-                                  );
-                                },
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFFD91E2A),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              side: const BorderSide(color: Colors.white),
-                              elevation: 0.0),
-                          child: BlocBuilder<LoginCubit, LoginState>(
-                            builder: (context, loginState) {
-                              if (loginState is LoginIsLoading) {
-                                return const CircularProgressIndicator(
-                                  color: Colors.white,
-                                );
+                    ),
+                    SizedBox(height: height * 0.05),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      height: height * 0.07,
+                      child: ElevatedButton(
+                        onPressed: validation()
+                            ? () {
+                                BlocProvider.of<LoginCubit>(context)
+                                    .btnlogin(LoginRequest(
+                                  phoneController.text,
+                                  passwordController.text,
+                                ));
                               }
-                              return const Text(
-                                'Masuk',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                            : () {
+                                Commons().showSnackBarErrorr(
+                                  context,
+                                  'No Handphone & Password Tidak Boleh Kosong',
+                                );
+                              },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFFD91E2A),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            side: const BorderSide(color: Colors.white),
+                            elevation: 0.0),
+                        child: BlocBuilder<LoginCubit, LoginState>(
+                          builder: (context, loginState) {
+                            if (loginState is LoginIsLoading) {
+                              return const CircularProgressIndicator(
+                                color: Colors.white,
                               );
-                            },
-                          ),
+                            }
+                            return Text(
+                              'Masuk',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: width * 0.03,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            );
+                          },
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'Belum Punya Akun?',
+                    ),
+                    SizedBox(height: height * 0.01),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Belum Punya Akun?',
+                          style: TextStyle(
+                            fontSize: width * 0.03,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            context.goNamed(Routes.regscreen);
+                          },
+                          child: Text(
+                            'Register',
                             style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
+                              fontSize: width * 0.03,
+                              color: redColor,
                             ),
                           ),
-                          TextButton(
-                            onPressed: () {
-                              context.goNamed(Routes.regscreen);
-                            },
-                            child: const Text(
-                              'Register',
-                              style: TextStyle(
-                                color: Color(0xFFD91E2A),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            );
-          },
-        ));
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
   }
 }
